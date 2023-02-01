@@ -120,17 +120,18 @@ $$ language plpgsql;
 --  3)  Preencha a tabela Schedule com algum estacalonamento não serial,
 --      os comandos apresentados abaixo preenchem a tabela com a mesma configuração
 --      de dados do Exemplo 01 do trabalho.
-INSERT INTO public."Schedule" ("time","#t","op","attr") VALUES (1,1,'R','X');
-INSERT INTO public."Schedule" ("time","#t","op","attr") VALUES (2,2,'R','X');
-INSERT INTO public."Schedule" ("time","#t","op","attr") VALUES (3,2,'W','X');
-INSERT INTO public."Schedule" ("time","#t","op","attr") VALUES (4,1,'W','X');
-INSERT INTO public."Schedule" ("time","#t","op","attr") VALUES (5,2,'C','');
-INSERT INTO public."Schedule" ("time","#t","op","attr") VALUES (6,1,'C','');
+INSERT INTO "Schedule" ("time", "#t", "op", "attr") VALUES
+(1, 1, 'R', 'X'),
+(2, 2, 'R', 'X'),
+(3, 2, 'W', 'X'),
+(4, 1, 'W', 'X'),
+(5, 2, 'C', '-'),
+(6, 1, 'C', '-');
 
 
 --  4)  Já com a tabela Schedule preenchida, basta executar o comando abaixo e verificar 
 --      se a saída corresponde ao esperado (1 para escalonamento serial e 0 para escalonamento não serial)
-select public.testeScheduleSerial();
+select public."testeScheduleSerial"();
 
 
 --  5)  O comando abaixo permite limpar os dados da tabela Schedule
@@ -141,9 +142,10 @@ DELETE FROM public."Schedule";
 --      para limpar a tabela e inserir na mesma algum escalonamento serial 
 --      e executar o passo 4 novamente. Os comandos apresentados abaixo preenchem 
 --      a tabela Schedule com a mesma configuração de dados do Exemplo 02 do trabalho.
-INSERT INTO public."Schedule" ("time","#t","op","attr") VALUES (7,3,'R','X');
-INSERT INTO public."Schedule" ("time","#t","op","attr") VALUES (8,3,'R','X');
-INSERT INTO public."Schedule" ("time","#t","op","attr") VALUES (9,3,'W','X');
-INSERT INTO public."Schedule" ("time","#t","op","attr") VALUES (10,3,'C','X');
-INSERT INTO public."Schedule" ("time","#t","op","attr") VALUES (11,4,'R','');
-INSERT INTO public."Schedule" ("time","#t","op","attr") VALUES (12,4,'C','');
+INSERT INTO "Schedule" ("time", "#t", "op", "attr") VALUES
+(7, 3, 'R', 'X'),
+(8, 3, 'R', 'Y'),
+(9, 3, 'W', 'Y'),
+(10, 3, 'C', '-'),
+(11, 4, 'R', 'X'),
+(12, 4, 'C', '-');
